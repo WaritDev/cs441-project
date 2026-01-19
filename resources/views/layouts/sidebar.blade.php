@@ -1,99 +1,67 @@
-<aside :class="sidebarCollapsed ? 'w-16' : 'w-64'" 
-       class="fixed left-0 top-0 z-40 h-screen bg-gray-900 transition-all duration-300">
-    <div class="flex h-full flex-col">
-        <!-- Logo -->
-        <div class="flex h-16 items-center justify-between border-b border-gray-800 px-4">
-            <template x-if="!sidebarCollapsed">
-                <div class="flex items-center gap-2">
-                    <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-                        <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                        </svg>
-                    </div>
-                    <span class="text-lg font-bold text-white">
-                        ThaiCRM
-                    </span>
-                </div>
-            </template>
-            <template x-if="sidebarCollapsed">
-                <div class="mx-auto flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-                    <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                </div>
-            </template>
-        </div>
+<aside :class="sidebarCollapsed ? 'w-20' : 'w-72'"
+       class="fixed left-0 top-0 z-50 h-screen bg-slate-900 border-r border-slate-800 text-slate-300 transition-all duration-300 ease-in-out shadow-xl">
 
-        <!-- Navigation -->
-        <nav class="flex-1 space-y-1 p-3">
-            <!-- Dashboard -->
-            <a href="{{ route('dashboard') }}" 
-               class="flex items-center gap-3 rounded-lg px-3 py-2 transition-colors {{ request()->routeIs('dashboard') ? 'bg-gray-800 text-white' : 'text-gray-400 hover:bg-gray-800/50 hover:text-white' }}">
-                <svg class="h-5 w-5 shrink-0 {{ request()->routeIs('dashboard') ? 'text-blue-500' : '' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
-                </svg>
-                <span x-show="!sidebarCollapsed" class="truncate font-medium">Dashboard</span>
-            </a>
+    <div class="flex h-16 items-center px-4 border-b border-slate-800/50 bg-slate-900/50 backdrop-blur-sm"
+         :class="sidebarCollapsed ? 'justify-center' : 'justify-between'">
 
-            <!-- Action Stream -->
-            <a href="#" 
-               class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 transition-colors hover:bg-gray-800/50 hover:text-white">
-                <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center gap-3 overflow-hidden whitespace-nowrap" x-show="!sidebarCollapsed">
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/20">
+                <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
-                <span x-show="!sidebarCollapsed" class="truncate font-medium">Action Stream</span>
-            </a>
+            </div>
+            <span class="text-lg font-bold text-white tracking-wide transition-opacity duration-200">
+                FlowCRM
+            </span>
+        </div>
 
-            <!-- Pipeline -->
-            <a href="#" 
-               class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 transition-colors hover:bg-gray-800/50 hover:text-white">
-                <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path>
+        <button @click="sidebarCollapsed = true" x-show="!sidebarCollapsed" class="rounded-lg p-1.5 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+
+        <button @click="sidebarCollapsed = false" x-show="sidebarCollapsed" class="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-800 text-emerald-400 hover:bg-emerald-600 hover:text-white transition-all shadow-md">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"></path></svg>
+        </button>
+    </div>
+
+    <div class="flex h-[calc(100vh-4rem)] flex-col justify-between">
+        <nav class="flex-1 space-y-2 p-3 overflow-y-auto custom-scrollbar">
+
+            <a href="{{ route('teams.index') }}"
+               class="group relative flex items-center gap-3 rounded-xl px-3 py-3 {{ request()->routeIs('teams.*') ? 'bg-slate-800 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white' }} transition-all duration-200">
+                <svg class="h-6 w-6 shrink-0 group-hover:text-cyan-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                 </svg>
-                <span x-show="!sidebarCollapsed" class="truncate font-medium">Pipeline</span>
+                <span x-show="!sidebarCollapsed" class="font-medium whitespace-nowrap transition-opacity duration-200">
+                    Manage Teams
+                </span>
             </a>
 
-            <!-- Customers -->
-            <a href="{{ route('customers') }}" 
-               class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 transition-colors hover:bg-gray-800/50 hover:text-white">
-                <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <a href="{{ route('users.index') }}"
+               class="group relative flex items-center gap-3 rounded-xl px-3 py-3 {{ request()->routeIs('users.*') ? 'bg-slate-800 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white' }} transition-all duration-200">
+                <svg class="h-6 w-6 shrink-0 group-hover:text-emerald-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                 </svg>
-                <span x-show="!sidebarCollapsed" class="truncate font-medium">Customers</span>
+                <span x-show="!sidebarCollapsed" class="font-medium whitespace-nowrap transition-opacity duration-200">
+                    Manage Users
+                </span>
             </a>
 
-            <!-- Templates -->
-            <a href="#" 
-               class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 transition-colors hover:bg-gray-800/50 hover:text-white">
-                <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-                </svg>
-                <span x-show="!sidebarCollapsed" class="truncate font-medium">Templates</span>
-            </a>
         </nav>
 
-        <!-- Bottom Section -->
-        <div class="border-t border-gray-800 p-3">
-            <!-- Settings -->
-            <a href="{{ route('profile.edit') }}" 
-               class="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-400 transition-colors hover:bg-gray-800/50 hover:text-white {{ request()->routeIs('profile.edit') ? 'bg-gray-800 text-white' : '' }}">
-                <svg class="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                </svg>
-                <span x-show="!sidebarCollapsed" class="font-medium">Settings</span>
+        <div class="border-t border-slate-800 p-3 bg-slate-900">
+            <a href="{{ route('profile.edit') }}" class="group flex items-center gap-3 rounded-xl p-2 hover:bg-slate-800 transition-colors relative">
+                <div class="h-10 w-10 shrink-0 rounded-full bg-slate-700 flex items-center justify-center text-white font-bold overflow-hidden border border-slate-600 group-hover:border-emerald-500 transition-colors">
+                    <span>{{ substr(Auth::user()->name ?? 'U', 0, 1) }}</span>
+                </div>
+                <div x-show="!sidebarCollapsed" class="flex-1 overflow-hidden transition-opacity duration-200">
+                    <p class="truncate text-sm font-medium text-white group-hover:text-emerald-400 transition-colors">
+                        {{ Auth::user()->name ?? 'Manager' }}
+                    </p>
+                    <p class="truncate text-xs text-slate-500">Edit Profile</p>
+                </div>
+                <button @click.prevent="sidebarCollapsed = !sidebarCollapsed" x-show="sidebarCollapsed" class="absolute inset-0 w-full h-full cursor-pointer"></button>
             </a>
-
-            <!-- Collapse Toggle -->
-            <button @click="sidebarCollapsed = !sidebarCollapsed"
-                    class="mt-2 flex w-full items-center justify-center rounded-lg bg-gray-800/30 p-2 text-gray-400 transition-colors hover:bg-gray-800 hover:text-white">
-                <svg x-show="sidebarCollapsed" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-                <svg x-show="!sidebarCollapsed" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-            </button>
         </div>
     </div>
 </aside>
