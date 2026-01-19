@@ -43,4 +43,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Deal::class);
     }
+
+    public function isManager(): bool
+    {
+        return $this->role === 'manager';
+    }
+
+    public function isSales(): bool
+    {
+        return $this->role === 'sales';
+    }
 }

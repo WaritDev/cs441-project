@@ -15,12 +15,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            TeamSeeder::class,
+        ]);
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Manager',
+            'email' => 'manager@flowcrm.com',
             'password'=> bcrypt('password'),
+            'role' => 'manager',
+            'team_id' => null,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Sales Rep',
+            'email' => 'sales@flowcrm.com',
+            'password'=> bcrypt('password'),
+            'role' => 'sales',
+            'team_id' => 1,
         ]);
     }
 }
