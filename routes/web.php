@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DealController;
 use App\Http\Controllers\PipelineController;
+use App\Http\Controllers\PipelineTemplateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/deals/create', [DealController::class, 'create'])->name('deals.create');
     Route::get('/deals/{id}/edit', [DealController::class, 'edit'])->name('deals.edit');
     Route::resource('deals', DealController::class);
+    Route::get('/pipeline-templates', [PipelineTemplateController::class, 'index'])->name('pipeline-templates.index');
+//    Route::get('/pipelines-templates/create', [PipelineTemplateController::class, 'create'])->name('pipelines.create');
+    Route::post('/pipeline-templates/select', [PipelineTemplateController::class, 'select'])->name('pipeline-templates.select');
+    Route::resource('pipeline-templates', PipelineTemplateController::class);
 });
 
 Route::middleware('auth')->group(function () {
