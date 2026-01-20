@@ -22,7 +22,8 @@ class Deal extends Model
         'value' => 'decimal:2'
     ];
 
-    public function isStale() {
+    public function isStale(): bool
+    {
         return $this->next_action_date < now() &&!$this->won_at &&!$this->lost_at;
     }
 
