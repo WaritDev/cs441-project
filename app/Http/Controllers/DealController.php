@@ -8,6 +8,7 @@ use App\Models\Deal;
 use App\Models\PipelineStage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class DealController extends Controller
 {
@@ -143,7 +144,8 @@ class DealController extends Controller
      */
     public function edit(Deal $deal)
     {
-        $customers = Customer::all(); // (In real app, filter by team)
+        Gate::authorize('view', $deal);
+        $customers = Customer::all();
 
         $user = Auth::user();
         $team = $user->team;
@@ -162,6 +164,7 @@ class DealController extends Controller
      */
     public function update(Request $request, Deal $deal)
     {
+        Gate::authorize('update', $deal);
         // Validation handled simpler here for brevity, matching store logic
         $request->validate([
             'name' => 'required',
