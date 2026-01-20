@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules;
@@ -58,6 +59,7 @@ class UserController extends Controller
             'role' => 'sales',
             'team_id' => $request->team_id,
             'last_login' => null,
+            'organization_id' => Auth::user()->organization_id,
         ]);
 
         return redirect()->route('users.index')->with('success', 'New Sales Rep created successfully!');
