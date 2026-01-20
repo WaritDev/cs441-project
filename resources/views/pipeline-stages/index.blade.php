@@ -14,11 +14,6 @@
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
                 เพิ่มดีลใหม่
             </button>
-{{--            onclick="window.location='{{ route('pipeline-stage.create') }}'"--}}
-{{--            <button   class="bg-slate-900 text-white px-5 py-2.5 rounded-lg hover:bg-slate-800 flex items-center gap-2 shadow-lg shadow-slate-900/20 transition-all">--}}
-{{--                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>--}}
-{{--                เพิ่ม Pipeline Stage ใหม่--}}
-{{--            </button>--}}
         </div>
 
         <div class="p-6 overflow-x-auto">

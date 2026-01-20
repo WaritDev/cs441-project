@@ -23,13 +23,13 @@ class DealController extends Controller
      */
     public function create()
     {
-        $customers = Customer::where('team_id', Auth::user()->current_team_id)
+        $customers = Customer::where('team_id', Auth::user()->getTeamId())
             ->where('status', 'active')
             ->get()
             ->map(function($c) {
                 return [
                     'id' => $c->id,
-                    'label' => "{$c->name} ({$c->nickname}) - {$c->line_id}" // Format สำหรับค้นหาง่าย
+                    'label' => "{$c->name} ({$c->nickname}) - {$c->line_id}"
                 ];
             });
 
@@ -46,14 +46,14 @@ class DealController extends Controller
             'customer_id' => 'required|exists:customers,id',
             'amount' => 'required|numeric',
             'stage' => 'required|string',
-            'next_action' => 'required|string', // Mandatory
-            'next_action_date' => 'required|date', // Mandatory
+            'next_action' => 'required|string',
+            'next_action_date' => 'required|date',
             'expected_close_date' => 'nullable|date',
         ]);
 
         $deal = Deal::create([
-            'team_id' => Auth::user()->current_team_id, // Auto Lock
-            'user_id' => Auth::id(), // Assigned User
+            'team_id' => Auth::user()->current_team_id,
+            'user_id' => Auth::id(),
             'customer_id' => $request->customer_id,
             'name' => $request->name,
             'amount' => $request->amount,
