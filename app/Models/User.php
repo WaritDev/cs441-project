@@ -57,4 +57,8 @@ class User extends Authenticatable
     {
         return $this->role === 'sales';
     }
+
+    public function getTeamId(): string {
+        return $this->team_id;
+    }
 }

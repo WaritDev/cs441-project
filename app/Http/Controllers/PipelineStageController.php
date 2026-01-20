@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\PipelineStage;
+use App\Models\Deal;
 
 class PipelineStageController extends Controller
 {
@@ -11,8 +13,13 @@ class PipelineStageController extends Controller
      */
     public function index()
     {
-        //
+        $stages = PipelineStage::orderBy('position')->get();
+        // Load deals with customer and nested organization data
+        $deals = Deal::with(['customer.organization'])->get();
+
+        return view('pipeline-stages.index', compact('stages', 'deals'));
     }
+
 
     /**
      * Show the form for creating a new resource.

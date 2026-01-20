@@ -3,7 +3,7 @@
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DealController;
-use App\Http\Controllers\PipelineController;
+use App\Http\Controllers\PipelineStageController;
 use App\Http\Controllers\PipelineTemplateController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
@@ -28,9 +28,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/customers/create', [CustomerController::class, 'create'])->name('customers.create');
     Route::resource('customers', CustomerController::class);
     Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
-    Route::get('/pipelines', [PipelineController::class, 'index'])->name('pipelines.index');
-    Route::get('/pipelines/create', [PipelineController::class, 'create'])->name('pipelines.create');
-    Route::resource('pipelines', PipelineController::class);
+    Route::get('/pipeline-stages', [PipelineStageController::class, 'index'])->name('pipeline-stages.index');
+    Route::get('/pipeline-stages/create', [PipelineStageController::class, 'create'])->name('pipeline-stages.create');
+    Route::resource('pipeline-stages', PipelineStageController::class);
     Route::get('/deals', [DealController::class, 'index'])->name('deals.index');
     Route::get('/deals/create', [DealController::class, 'create'])->name('deals.create');
     Route::get('/deals/{id}/edit', [DealController::class, 'edit'])->name('deals.edit');
