@@ -19,7 +19,7 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = ['name', 'username', 'email', 'password', 'role', 'img_url', 'team_id', 'last_login','organization_id'];
+    protected $fillable = ['name', 'username', 'email', 'password', 'role', 'img_url', 'team_id', 'last_login', 'organization_id'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -56,5 +56,9 @@ class User extends Authenticatable
     public function isSales(): bool
     {
         return $this->role === 'sales';
+    }
+
+    public function getTeamId(): string {
+        return $this->team_id;
     }
 }

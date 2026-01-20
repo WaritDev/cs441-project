@@ -88,7 +88,7 @@ class PipelineTemplateController extends Controller
     {
         // Logic สำหรับบันทึก Template ที่เลือกเข้าสู่ Team
         // $team->pipelines()->create(...)
-        return redirect()->route('pipelines.index')->with('success', 'ติดตั้ง Pipeline เรียบร้อยแล้ว');
+        return redirect()->route('pipeline-stages.index')->with('success', 'ติดตั้ง Pipeline เรียบร้อยแล้ว');
     }
 
     /**

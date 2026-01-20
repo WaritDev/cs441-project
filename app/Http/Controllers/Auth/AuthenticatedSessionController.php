@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(route('teams.index'));
         }
 
-        return redirect()->intended(route('teams.index'));
+        return redirect()->intended(route('dashboard.index'));
     }
 
     /**
