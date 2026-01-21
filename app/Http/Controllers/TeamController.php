@@ -2,32 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organization;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
 {
     public function index()
     {
-        $organizations = Organization::all();
-        $teams = Team::with(['members', 'organization'])->get();
-        $availableUsers = User::whereNull('team_id')->where('role', 'sales')->get();
+        Gate::authorize('viewAny', Team::class);
+        $user = Auth::user();
+        $teams = Team::with(['members'])
+        ->where('organization_id', $user->organization_id)
+            ->get();
 
-        return view('teams.index', compact('teams', 'availableUsers', 'organizations'));
+        $availableUsers = User::where('organization_id', $user->organization_id)
+            ->where('role', 'sales')
+            ->whereNull('team_id')
+            ->get();
+
+        return view('teams.index', compact('teams', 'availableUsers'));
     }
 
     public function store(Request $request)
     {
+        Gate::authorize('create', Team::class);
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'organization_id' => 'required|exists:organizations,id',
         ]);
 
         Team::create([
             'name' => $request->name,
-            'organization_id' => $request->organization_id,
+            'organization_id' => Auth::user()->organization_id,
         ]);
 
         return back()->with('success', 'Team created successfully.');
@@ -35,6 +44,7 @@ class TeamController extends Controller
 
     public function destroy(Team $team)
     {
+        Gate::authorize('delete', $team);
         $team->members()->update(['team_id' => null]);
 
         $team->delete();
@@ -43,11 +53,16 @@ class TeamController extends Controller
 
     public function addMember(Request $request, Team $team)
     {
+        Gate::authorize('update', $team);
+
         $request->validate([
             'user_id' => 'required|exists:users,id'
         ]);
 
-        $user = User::findOrFail($request->user_id);
+        $user = User::where('id', $request->user_id)
+            ->where('organization_id', Auth::user()->organization_id)
+            ->firstOrFail();
+
         $user->team_id = $team->id;
         $user->save();
 
@@ -56,8 +71,11 @@ class TeamController extends Controller
 
     public function removeMember(User $user)
     {
+        Gate::authorize('update', $user);
+
         $user->team_id = null;
         $user->save();
+
         return back()->with('success', 'Member removed from team.');
     }
 }
