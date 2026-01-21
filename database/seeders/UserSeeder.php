@@ -17,6 +17,13 @@ class UserSeeder extends Seeder
         $org = Organization::first();
         $team = Team::where('organization_id', $org->id)->first();
 
+        // Admin
+        User::create([
+            'organization_id' => $org->id,
+            'name' => 'ผู้ดูแลระบบ', 'email' => 'admin@thaicrm.com',
+            'password' => bcrypt('password'), 'role' => 'admin', 'team_id' => $team->id
+        ]);
+
         // Manager
         User::create([
             'organization_id' => $org->id,

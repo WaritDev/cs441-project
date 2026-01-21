@@ -18,12 +18,18 @@ class OrganizationSeeder extends Seeder
         $orgA = Organization::create([
             'id' => 1,
             'name' => 'ร้านคลินิกความงาม A',
-            'slug' => 'clinic-a'
+            'slug' => 'clinic-a',
+            'size' => 'medium',
+            'description' => 'คลินิกความงามชั้นนำในกรุงเทพฯ ให้บริการครบวงจร',
+            'invite_code' => 'CLINICA2026'
         ]);
         $orgB = Organization::create([
             'id' => 2,
             'name' => 'ร้านคลินิกความงาม B',
-            'slug' => 'clinic-b'
+            'slug' => 'clinic-b',
+            'size' => 'small',
+            'description' => 'คลินิกความงามบูติก มุ่งเน้นการบริการส่วนบุคคล',
+            'invite_code' => 'CLINICB2026'
         ]);
 
 
