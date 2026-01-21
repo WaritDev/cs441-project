@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         User::create([
             'organization_id' => $org->id,
             'name' => 'ผู้ดูแลระบบ', 'email' => 'admin@thaicrm.com',
-            'password' => bcrypt('password'), 'role' => 'admin', 'team_id' => $team->id
+            'password' => bcrypt('password'), 'role' => 'admin',
         ]);
 
         // Manager
