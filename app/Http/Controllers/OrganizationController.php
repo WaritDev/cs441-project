@@ -35,8 +35,6 @@ class OrganizationController extends Controller
         Gate::authorize('create', Organization::class);
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            // 'address' => 'nullable|string',
-            // 'tax_id' => 'nullable|string|max:255',
         ]);
 
         Organization::create($validated);

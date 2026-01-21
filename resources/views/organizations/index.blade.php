@@ -33,8 +33,6 @@
                     <thead>
                     <tr class="bg-slate-50 border-b border-slate-200 text-xs uppercase text-slate-500 font-semibold tracking-wider">
                         <th class="px-6 py-4">Organization Name</th>
-                        <th class="px-6 py-4">Address</th>
-                        <th class="px-6 py-4">Tax ID</th>
                         <th class="px-6 py-4 text-center">Actions</th>
                     </tr>
                     </thead>
@@ -52,14 +50,6 @@
                                     </div>
                                 </div>
                             </td>
-<!-- 
-                            <td class="px-6 py-4 text-sm text-slate-500">
-                                {{ $organization->address ?? '-' }}
-                            </td>
-
-                            <td class="px-6 py-4 text-sm text-slate-500">
-                                {{ $organization->tax_id ?? '-' }}
-                            </td> -->
 
                             <td class="px-6 py-4 text-center">
                                 <div class="flex items-center justify-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
@@ -79,7 +69,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-6 py-10 text-center text-slate-500">
+                            <td colspan="2" class="px-6 py-10 text-center text-slate-500">
                                 No organizations found. Click "Add Organization" to create one.
                             </td>
                         </tr>
