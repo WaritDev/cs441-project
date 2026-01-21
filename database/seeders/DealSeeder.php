@@ -23,6 +23,7 @@ class DealSeeder extends Seeder
             $stage = $stages->random();
             Deal::create(
                 [
+                    'organization_id' => $customer->organization_id,
                     'name' => 'ขาย'.$customer->name,
                     'customer_id' => $customer->id,
                     'user_id' => $customer->user_id,

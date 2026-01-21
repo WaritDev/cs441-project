@@ -16,13 +16,17 @@ class PipelineStageController extends Controller
         $user = auth()->user();
         $team = $user->team;
 
+        if (!$team && $user->organization) {
+            $team = $user->organization->teams()->first();
+        }
+
         // Fetch Stages from Team's Pipeline Template
         $stages = $team && $team->pipelineTemplate
             ? $team->pipelineTemplate->stages
             : collect([]); // Handle case with no team/template gracefully
 
         // Load deals with customer and nested organization from the user's team
-        $deals = Deal::where('team_id', $user->getTeamId())
+        $deals = Deal::where('team_id', $team ? $team->id : null)
             ->with(['customer.organization'])
             ->get();
 
