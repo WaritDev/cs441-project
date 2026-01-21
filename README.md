@@ -109,8 +109,11 @@ docker run --rm \
 
 **บัญชีสำหรับทดสอบ (Default Credentials):**
 
-* **Manager:** `manager@thaicrm.com` / `password`
-* **Sales:** `sales1@thaicrm.com` / `password`
+* **Admin:** `admin@flowcrm.com` / `password`
+* **Manager-Org1:** `manager@org1.com` / `password`
+* **Manager-Org2:** `manager@org2.com` / `password`
+* **Sales:** `sales1@org1.com` / `password`
+* **Sales:** `sales1@org2.com` / `password`
 
 ## Key Features for Demo
 
