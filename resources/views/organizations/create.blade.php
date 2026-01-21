@@ -15,9 +15,39 @@
                 @csrf
 
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1">Organization Name</label>
-                    <input type="text" name="name" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="e.g. Acme Inc.">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Organization Name *</label>
+                    <input type="text" name="name" value="{{ old('name') }}" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="e.g. Acme Inc.">
                     @error('name') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Slug *</label>
+                    <input type="text" name="slug" value="{{ old('slug') }}" required class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="e.g. acme-inc">
+                    @error('slug') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Size</label>
+                    <select name="size" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors">
+                        <option value="">Select size</option>
+                        <option value="small" {{ old('size') == 'small' ? 'selected' : '' }}>Small (1-10)</option>
+                        <option value="medium" {{ old('size') == 'medium' ? 'selected' : '' }}>Medium (11-50)</option>
+                        <option value="large" {{ old('size') == 'large' ? 'selected' : '' }}>Large (51-200)</option>
+                        <option value="enterprise" {{ old('size') == 'enterprise' ? 'selected' : '' }}>Enterprise (200+)</option>
+                    </select>
+                    @error('size') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Description</label>
+                    <textarea name="description" rows="3" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="Enter organization description">{{ old('description') }}</textarea>
+                    @error('description') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Invite Code</label>
+                    <input type="text" name="invite_code" value="{{ old('invite_code') }}" class="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors" placeholder="e.g. ACME2026">
+                    @error('invite_code') <span class="text-xs text-red-500">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="pt-4 flex justify-end">
