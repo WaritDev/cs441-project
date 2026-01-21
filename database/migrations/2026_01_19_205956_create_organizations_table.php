@@ -31,6 +31,10 @@ return new class extends Migration {
         Schema::table('customers', function (Blueprint $table) {
             $table->foreignId('organization_id')->after('id')->constrained()->onDelete('cascade');
         });
+
+        Schema::table('deals', function (Blueprint $table) {
+            $table->foreignId('organization_id')->after('id')->constrained()->onDelete('cascade');
+        });
     }
 
     /**

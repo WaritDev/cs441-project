@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrganizationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,7 +38,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('activities', ActivityController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 });
-    // Sales -> Customer Management
+    // sales -> Customer Management
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers.index');
 
     // Profile Management
@@ -55,8 +56,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/teams/{team}/members', [TeamController::class, 'addMember'])->name('teams.add_member');
         Route::delete('/teams/members/{user}', [TeamController::class, 'removeMember'])->name('teams.remove_member');
 
-        // User Management (Sales Management)
+        // User Management (sales Management)
         Route::resource('users', UserController::class)->except(['show']);
+    });
+
+    // Admin
+    Route::middleware(['role:admin'])->group(function () {
+        Route::resource('organizations', OrganizationController::class);
     });
 
 require __DIR__.'/auth.php';
