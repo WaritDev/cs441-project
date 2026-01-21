@@ -63,6 +63,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Admin
     Route::middleware(['role:admin'])->group(function () {
         Route::resource('organizations', OrganizationController::class);
+
+        Route::resource('users', UserController::class)->except(['show']);
     });
 
 require __DIR__.'/auth.php';
